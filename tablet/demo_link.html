@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    /* FHEM tablet ui */
+    /*
+    * UI builder framework for FHEM
+    *
+    * Version: 1.4.4
+    * URL: https://github.com/knowthelist/fhem-tablet-ui
+    *
+    * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    *
+    */
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="74">
+    <meta name="widget_base_height" content="71">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="0"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="1"> <!-- 1=output to console;0=no output -->
+    <meta name="demo" content="1"> <!-- 1=demo data;0=normal mode-->
+
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+
+    <script src="/fhem/pgm2/jquery.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.toast.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.gridster.min.js" defer></script>
+    <script src="/fhem/tablet/js/fhem-tablet-ui.min.js" defer></script>
+
+    <title>FTUI Demo Link</title>
+</head>
+<body>
+<div class="gridster">
+<ul>
+<li data-row="1" data-col="1" data-sizex="4" data-sizey="5">
+    <header>WIDGET LINK</header>
+    <!-- place your widget here -->
+    <div class="left cell">
+        <div data-type="link" class="left large thin"
+             data-icon-left="fa-angle-left"
+             data-url="demo_widgets.html">Widgets
+        </div>
+        <div class="left-align bigger thin ">Link</div>
+        <div class="left-align darker">&nbsp; Widget</div>
+    </div>
+    <div class="row container round padding gray col-2-3 top-space left left-space left-align">
+       <b>Link</b> is a
+       is a simple way to create <br/>
+       navigation links<br/>
+       or common button like click areas<br/>
+       with icons
+    </div>
+    <div class="bottom absolute bottom-space">
+        <div data-type="link" class="round left"
+             data-color="lightgray"
+             data-icon="fa-code"
+             data-background-color="orange"
+             data-url="javascript:void(window.open('view-source:'+location.href))">
+             View Source Code
+        </div>
+        <div data-type="link" class="round right"
+             data-color="orange"
+             data-icon="fa-github"
+             data-border-color="orange"
+             data-url="https://github.com/knowthelist/fhem-tablet-ui">
+             Show On Github
+        </div>
+    </div>
+</li>
+<li data-row="1" data-col="5" data-sizex="5" data-sizey="5">
+    <header>HUGE CLICK AREA</header>
+    <!-- place your widget here -->
+    <div class="top-space-3x bottom-space-3x">Send commands to FHEM</div>
+
+        <div data-type="link" class="round bigger left-space-4x"
+             data-width="300" data-height="200"
+             data-color="white"
+             data-icon-left="fa-exclamation-circle"
+             data-icon-right="fa-exclamation-circle"
+             data-background-color="red"
+             data-fhem-cmd="set AllLamps on">
+             Panic
+        </div>
+
+</li>
+<li data-row="1" data-col="10" data-sizex="3" data-sizey="5">
+    <header>COMMON LINKS</header>
+    <!-- place your widget here -->
+    <div class="top-space darker">call an URL</div>
+    <div data-type="link" class="large thin top-space left-space-3x"
+         data-width="150"
+         data-icon-left="fa-video-camera"
+         data-color="green"
+         data-url="#cam.html">
+        View cam
+    </div>
+    <div class="top-space-2x darker">call Javascripts</div>
+    <div class="top-space">
+        <div data-type="link" class="inline large thin"
+             data-icon-left="fa-angle-left"
+             data-url="javascript:history.back()">
+            Back
+        </div>
+        <div data-type="link" class="inline left-space large thin"
+             data-width="120"
+             data-icon-right="fa-angle-right"
+             data-url="javascript:history.forward()">
+            Forward
+        </div>
+    </div>
+    <div class="top-space-2x darker">call via AJAX</div>
+    <div class="top-space">
+        <div data-type="link" class="inline large thin"
+             data-icon-left="fa-step-backward"
+             data-url-xhr="http://webaradio/control?back">
+            Back
+        </div>
+        <div data-type="link" class="inline left-space large thin"
+             data-width="100"
+             data-icon-right="fa-step-forward"
+             data-url-xhr="http://webaradio/control?next">
+            Next
+        </div>
+    </div>
+    <div class="top-space-2x darker">link without icon</div>
+    <div data-type="link" class="top-space"
+         data-color="blue"
+         data-url="#link.html">
+        LINK
+    </div>
+</li>
+<li data-row="6" data-col="1" data-sizex="3" data-sizey="4">
+    <header>SQUARE BUTTONS</header>
+    <!-- place your widget here -->
+    <div class="left-space-3x top-space-2x">
+        <div data-type="link" class="cell"
+             data-width="130" data-height="50"
+             data-color="white"
+             data-background-color="green"
+             data-icon="fa-refresh"
+             data-fhem-cmd="update all https://raw.githubusercontent.com/knowthelist/fhem-tablet-ui/master/controls_fhemtabletui.txt">
+            Update FTUI
+        </div>
+        <div data-type="link" class="cell"
+             data-width="130" data-height="50"
+             data-color="white"
+             data-background-color="blue"
+             data-icon="fa-download"
+             data-url="https://github.com/knowthelist/fhem-tablet-ui/archive/master.zip">
+            Download UI
+        </div>
+        <div data-type="link" class="cell"
+             data-width="130" data-height="50"
+             data-color="white"
+             data-background-color="red"
+             data-icon="fa-envelope"
+             data-url="#send.html">
+            Send Mail
+        </div>
+        <div data-type="link" class="cell"
+             data-width="130" data-height="50"
+             data-color="white"
+             data-background-color="green"
+             data-icon="fa-cloud"
+             data-url="#cloud.html">
+            Check Cloud
+        </div>
+    </div>
+</li>
+<li data-row="6" data-col="4" data-sizex="6" data-sizey="4">
+    <header>DIFFERT STYLES, ICONS, SIZES</header>
+    <!-- place your widget here -->
+    <div class="top-space darker">Two Icons</div>
+    <div data-type="link" class="round large thin top-space left-space-3x"
+         data-width="230" data-height="50"
+         data-color="white"
+         data-background-color="#717453"
+         data-icon-left="fa-fax"
+         data-icon-right="fa-angle-right"
+         data-text-align="left"
+         data-url="#fax-details.html">
+        Fax Details
+    </div>
+    <div class="top-space darker">Multi Line Text</div>
+    <div data-type="link" class="round medium top-space left-space-3x"
+         data-width="230"
+         data-color="white"
+         data-background-color="#717453"
+         data-icon-left="fa-coffee"
+         data-icon-right="fa-angle-right"
+         data-text-align="left"
+         data-url="#break.html">
+        This Text is medium<br/>
+        and contains line<br/>
+        breaks
+    </div>
+    <div class="top-space darker">Page changer uses border style</div>
+    <div class="top-space">
+        <div data-type="link" class="cell inline"
+             data-width="80" data-height="35"
+             data-color="green"
+             data-background-color=""
+             data-border-color="green"
+             data-active-color="white"
+             data-active-background-color="green"
+             data-active-border-color="green"
+             data-active-pattern=".*page1"
+             data-icon="fa-home"
+             data-url="#page1">
+            Page1
+        </div>
+        <div data-type="link" class="cell inline"
+             data-width="80" data-height="35"
+             data-color="green"
+             data-background-color=""
+             data-border-color="green"
+             data-active-color="white"
+             data-active-background-color="green"
+             data-active-border-color="green"
+             data-active-pattern=".*page2"
+             data-icon="fa-gear"
+             data-url="#page2">
+            Page2
+        </div>
+        <div data-type="link" class="cell inline"
+             data-width="80" data-height="35"
+             data-color="green"
+             data-background-color=""
+             data-border-color="green"
+             data-active-color="white"
+             data-active-background-color="green"
+             data-active-border-color="green"
+             data-active-pattern=".*page3"
+             data-icon="fa-music"
+             data-url="#page3">
+            Page3
+        </div>
+        <div data-type="link" class="cell inline"
+             data-width="80" data-height="35"
+             data-color="green"
+             data-background-color=""
+             data-border-color="green"
+             data-active-color="white"
+             data-active-background-color="green"
+             data-active-border-color="green"
+             data-active-pattern=".*page4"
+             data-icon="fa-print"
+             data-url="#page4">
+            Page4
+        </div>
+    </div>
+</li>
+<li data-row="6" data-col="10" data-sizex="3" data-sizey="4">
+    <header>ROUND BUTTONS</header>
+    <!-- place your widget here -->
+    <div class="left-space-3x top-space-2x">
+        <div data-type="link" class="round cell"
+             data-width="130" data-height="50"
+             data-color="white"
+             data-background-color="green"
+             data-icon="fa-refresh"
+             data-fhem-cmd="update all https://raw.githubusercontent.com/knowthelist/fhem-tablet-ui/master/controls_fhemtabletui.txt">
+            Update FTUI
+        </div>
+        <div data-type="link" class="round cell"
+             data-width="130" data-height="50"
+             data-color="white"
+             data-background-color="blue"
+             data-icon="fa-download"
+             data-url="https://github.com/knowthelist/fhem-tablet-ui/archive/master.zip">
+            Download UI
+        </div>
+        <div data-type="link" class="round cell"
+             data-width="130" data-height="50"
+             data-color="white"
+             data-background-color="red"
+             data-icon="fa-lock"
+             data-fhem-cmd="set AllDoors locked">
+            Lock Doors
+        </div>
+        <div data-type="link" class="round cell"
+             data-width="130" data-height="50"
+             data-color="white"
+             data-background-color="green"
+             data-icon="fa-cloud"
+             data-url="#cloud.html">
+            Check Cloud
+        </div>
+    </div>
+</li>
+</ul>
+</div>
+</body>
+</html>

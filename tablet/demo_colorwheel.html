@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    /* FHEM tablet ui */
+    /*
+    * UI builder framework for FHEM
+    *
+    * Version: 1.4.4
+    * URL: https://github.com/knowthelist/fhem-tablet-ui
+    *
+    * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    *
+    */
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="74">
+    <meta name="widget_base_height" content="71">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="0"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="1"> <!-- 1=output to console;0=no output -->
+    <meta name="demo" content="1"> <!-- 1=demo data;0=normal mode-->
+
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+
+    <script src="/fhem/pgm2/jquery.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.toast.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.gridster.min.js" defer></script>
+    <script src="/fhem/tablet/js/fhem-tablet-ui.min.js" defer></script>
+
+    <title>FTUI Demo Colorwheel</title>
+</head>
+<body>
+<div class="gridster">
+<ul>
+<li data-row="1" data-col="1" data-sizex="6" data-sizey="5">
+    <header>WIDGET COLORWHEEL</header>
+    <!-- place your widget here -->
+    <div class="left cell">
+        <div data-type="link" class="left large thin"
+             data-icon-left="fa-chevron-left"
+             data-url="demo_widgets.html">
+            Widgets
+        </div>
+        <div class="left-align bigger thin ">Colorwheel</div>
+        <div class="left-align darker">&nbsp; Widget</div>
+    </div>
+    <div class="container round padding gray col-2-3 top-space left left-space left-align ">
+       <b>Colorwheel</b> is a
+       color picker widget <br/>
+       to control RGB color values<br/>
+       of your light devices
+    </div>
+    <div class="bottom absolute bottom-space">
+        <div data-type="link" class="round left"
+             data-color="lightgray"
+             data-icon="fa-code"
+             data-background-color="orange"
+             data-url="javascript:void(window.open('view-source:'+location.href))">
+             View Source Code
+        </div>
+        <div data-type="link" class="round right"
+             data-color="orange"
+             data-icon="fa-github"
+             data-border-color="orange"
+             data-url="https://github.com/knowthelist/fhem-tablet-ui">
+             Show On Github
+        </div>
+    </div>
+</li>
+<li data-row="1" data-col="7" data-sizex="3" data-sizey="5">
+    <header>COLORWHEEL</header>
+    <!-- place your widget here -->
+    <div class="row">
+    <div data-type="colorwheel" data-device='dummy2' class="roundIndicator top-space-2x"></div>
+    <div class="">class="roundIndicator"</div>
+    </div>
+</li>
+<li data-row="1" data-col="10" data-sizex="3" data-sizey="5">
+    <header>COLORWHEEL ON SUBMENUS</header>
+    <!-- place your widget here -->
+    <div class="row container round gray padding margin">
+        <div data-type="switch" data-device='HUEDevice1' data-on-background-color="HUEDevice1:rgb" data-get-on="dim.*|on" data-set-on="on" data-icon="fa-lightbulb-o" class="col-1-4"></div>
+        <div class="col-1-2">HUE Device 1</div>
+        <div data-type="symbol" id="starter1" data-device='HUEDevice1' data-get="" data-off-color="HUEDevice1:rgb" data-off-background-color="HUEDevice1:rgb" data-icon="fa-ellipsis-h" data-background-icon="fa-circle-thin" class="small"></div>
+    </div>
+    <div class="row container round gray padding margin">
+        <div data-type="switch" data-device='HUEDevice2' data-on-background-color="HUEDevice2:rgb" data-get-on="dim.*|on" data-set-on="on" data-icon="fa-lightbulb-o" class="col-1-4"></div>
+        <div class="col-1-2">HUE Device 2</div>
+        <div data-type="symbol" id="starter2" data-device='HUEDevice2' data-get="" data-off-color="HUEDevice2:rgb" data-off-background-color="HUEDevice2:rgb" data-icon="fa-ellipsis-v" class="small"></div>
+    </div>
+    <div class="row container round gray padding margin">
+        <div data-type="switch" data-device='HUEDevice3' data-on-background-color="HUEDevice3:rgb" data-get-on="dim.*|on" data-set-on="on" data-icon="fa-lightbulb-o" class="col-1-4"></div>
+        <div class="col-1-2">HUE Device 3</div>
+        <div data-type="symbol" id="starter3" data-device='HUEDevice3' data-get="" data-off-color="HUEDevice3:rgb" data-off-background-color="HUEDevice3:rgb" data-icon="fa-circle" class="small"></div>
+    </div>
+    <div class="container round gray padding margin">
+        <div data-type="switch" data-device='HUEDevice4' data-get-on="dim.*|on" data-set-on="on" data-icon="fa-lightbulb-o" class="col-1-4"></div>
+        <div class="col-1-2">HUE Device 4</div>
+        <div data-type="symbol" id="starter4" data-device='HUEDevice4' data-get="" data-icon="fa-bars" class="small"></div>
+    </div>
+    <div data-type="popup" data-height="240px" data-width="240px" data-mode="animate" data-starter="#starter1" class="col-1-6">
+      <div class="dialog">
+          <header>RBG COLOR</header>
+          <div data-type="colorwheel" data-device='HUEDevice1' data-get="rgb" data-set="rgb" class="roundIndicator"></div>
+      </div>
+    </div>
+    <div data-type="popup" data-height="240px" data-width="240px" data-mode="animate" data-starter="#starter2" class="col-1-6">
+      <div class="dialog">
+          <header>RBG COLOR</header>
+          <div data-type="colorwheel" data-device='HUEDevice2' data-get="rgb" data-set="rgb" class="roundIndicator"></div>
+      </div>
+    </div>
+    <div data-type="popup" data-height="240px" data-width="240px" data-mode="animate" data-starter="#starter3" class="col-1-6">
+      <div class="dialog">
+          <header>RBG COLOR</header>
+          <div data-type="colorwheel" data-device='HUEDevice3' data-get="rgb" data-set="rgb" class="roundIndicator"></div>
+      </div>
+    </div>
+    <div data-type="popup" data-height="240px" data-width="240px" data-mode="fade" data-starter="#starter4" class="col-1-6">
+      <div class="dialog">
+          <header>RBG COLOR</header>
+          <div data-type="colorwheel" data-device='HUEDevice4' data-get="rgb" data-set="rgb" class="roundIndicator"></div>
+      </div>
+    </div>
+</li>
+<li data-row="6" data-col="1" data-sizex="3" data-sizey="4">
+    <header>SMALL</header>
+    <!-- place your widget here -->
+    <div data-type="colorwheel" data-device='dummy2' class="small top-space-3x"></div>
+    <div class="">class="small"</div>
+</li>
+<li data-row="6" data-col="4" data-sizex="6" data-sizey="4">
+    <header>COLORWHEEL BIG</header>
+    <!-- place your widget here -->
+    <div class="row top-space-2x">
+        <div data-type="colorwheel" data-device='dummy1' class="big barIndicator col-1-2"></div>
+        <div class="medium col-1-2">class="big barIndicator"</div>
+    </div>
+</li>
+<li data-row="6" data-col="10" data-sizex="3" data-sizey="4">
+    <header>BACK</header>
+    <!-- place your widget here -->
+    <div data-type="colorwheel" data-device='dummy1' class="lineIndicator  top-space-3x"></div>
+    <div class="top-narrow-2x">class="lineIndicator"</div>
+</li>
+</ul>
+</div>
+</body>
+</html>

@@ -187,12 +187,12 @@ function initWidgets() {
     devs = [];
     pars = [];
 
-    //restore divecestates from storage
+    //restore divece states from storage
     if (!DEMO)
         deviceStates=JSON.parse(localStorage.getItem('deviceStates')) || {};
     else {
-        $.ajax({async: false,url: "/fhem/tablet/demo.json",})
-        .done ( function( data ) {deviceStates=data || {};});
+        $.ajax({async: false,url: "/fhem/tablet/data/"+filename.replace(".html",".dat"),})
+        .done ( function( data ) {deviceStates=JSON.parse(data) || {};});
     }
 
     showDeprecationMsg();
@@ -472,11 +472,11 @@ function loadStyleSchema(){
                for (var s in styles){
                    var param = styles[s].split(':');
                    if (param[0].match(/color/)){
-                      params[$.trim(param[0])]=$.trim(param[1]);
+                      params[$.trim(param[0])]=$.trim(param[1]).replace('! important','').replace('!important','');
                    }
                }
                if (Object.keys(params).length>0)
-                    styleCollection[elmName]=params;
+                   styleCollection[elmName]=params;
             }
         }
     });

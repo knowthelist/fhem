@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    /* FHEM tablet ui */
+    /*
+    * UI builder framework for FHEM
+    *
+    * Version: 1.4.4
+    * URL: https://github.com/knowthelist/fhem-tablet-ui
+    *
+    * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    *
+    */
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="74">
+    <meta name="widget_base_height" content="71">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="0"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="1"> <!-- 1=output to console;0=no output -->
+    <meta name="demo" content="1"> <!-- 1=demo data;0=normal mode-->
+
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+
+    <script src="/fhem/pgm2/jquery.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.toast.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.gridster.min.js" defer></script>
+    <script src="/fhem/tablet/js/fhem-tablet-ui.min.js" defer></script>
+
+    <title>FTUI Demo Widgets</title>
+</head>
+<body>
+<div class="gridster">
+<ul>
+<li data-row="1" data-col="1" data-sizex="6" data-sizey="5">
+    <header>FTUI</header>
+    <!-- place your widget here -->
+    <div class="left cell">
+        <!--div data-type="link" class="left large thin"
+             data-icon-left="fa-angle-left"
+             data-url="demo_overview.html">
+            Overview
+        </div-->
+       <div class="left-align bigger thin ">Widgets</div>
+       <div class="left-align darker">&nbsp; FHEM Tablet UI</div>
+    </div>
+    <div class="container round padding gray col-2-3 top-space left left-space left-align ">
+       Some examples for the usage<br/>
+       of FTUI widget <br/>
+       <br/>
+       <br/>
+    </div>
+    <div class="bottom absolute bottom-space">
+        <div data-type="link" class="round left"
+             data-color="lightgray"
+             data-icon="fa-code"
+             data-background-color="orange"
+             data-url="javascript:void(window.open('view-source:'+location.href))">
+             View Source Code
+        </div>
+        <div data-type="link" class="round right"
+             data-color="orange"
+             data-icon="fa-github"
+             data-border-color="orange"
+             data-url="https://github.com/knowthelist/fhem-tablet-ui">
+             Show On Github
+        </div>
+    </div>
+</li>
+<li data-row="1" data-col="7" data-sizex="6" data-sizey="5">
+    <header>WIDGETS</header>
+    <!-- place your widget here -->
+    <div class="top-space inline">
+        <div data-type="pagebutton" data-url="demo_colorwheel.html" data-off-background-color="#337ab7" data-icon="fa-eyedropper"></div>
+        <div class="cell">Colorwheel</div>
+    </div>
+    <div class="top-space inline">
+        <div data-type="pagebutton" data-url="demo_range.html" data-off-background-color="#337ab7" data-icon="fa-i-cursor" ></div>
+        <div class="cell">Range</div>
+    </div>
+    <div class="top-space inline">
+        <div data-type="pagebutton" data-url="demo_link.html" data-off-background-color="#337ab7" data-icon="fa-external-link" ></div>
+        <div class="cell">Link</div>
+    </div>
+    <div class="top-space inline">
+        <div class="cell">...more demos will follow</div>
+    </div>
+</li>
+<li data-row="6" data-col="1" data-sizex="3" data-sizey="4">
+    <header></header>
+    <!-- place your widget here -->
+ </li>
+<li data-row="6" data-col="4" data-sizex="6" data-sizey="4">
+    <header></header>
+    <!-- place your widget here -->
+</li>
+<li data-row="6" data-col="10" data-sizex="3" data-sizey="4">
+    <header></header>
+    <!-- place your widget here -->
+ </li>
+</ul>
+</div>
+</body>
+</html>
