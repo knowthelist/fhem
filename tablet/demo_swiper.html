@@ -178,13 +178,24 @@
     </div>
 </li>
 <li data-row="6" data-col="1" data-sizex="3" data-sizey="4">
-    <header></header>
+    <header>AUTOPLAY</header>
     <!-- place your widget here -->
+    <div class="container round gray medium cell padding">data-autoplay="4000"</div>
+    <div data-type="swiper" data-height="200px" data-width="250px"
+         data-autoplay="4000" class="top-space">
+    <ul>
+        <li><div data-type="image" data-url="http://lorempixel.com/200/200/" data-refresh="60" class="nocache"></div></li>
+        <li><div data-type="image" data-url="http://lorempixel.com/200/200/" data-refresh="60" class="nocache"></div></li>
+        <li><div data-type="image" data-url="http://lorempixel.com/200/200/" data-refresh="60" class="nocache"></div></li>
+        <li><div data-type="image" data-url="http://lorempixel.com/200/200/" data-refresh="60" class="nocache"></div></li>
+     </ul>
+     </div>
 </li>
 <li data-row="6" data-col="4" data-sizex="6" data-sizey="4">
     <header>BASIC</header>
     <!-- place your widget here -->
-    <div data-type="swiper"  data-height="220px" data-width="400px" class="top-space-2x">
+    <div data-type="swiper"  data-height="220px" data-width="400px"
+         class="top-space-2x">
     <ul>
         <li><div class="row-2-3 container gray center large">Page1</div></li>
         <li><div class="row-2-3 container gray center large">Page2</div></li>
@@ -197,6 +208,21 @@
 <li data-row="6" data-col="10" data-sizex="3" data-sizey="4">
     <header></header>
     <!-- place your widget here -->
+    <div class="container round gray cell padding">data-device="dummy1"
+    data-states='["Wert1","...]'
+    class="navbuttons nopagination"</div>
+    <div data-type="swiper" data-height="200px" data-width="250px"
+         data-device="dummy1"
+         data-states='["Wert1","Wert2","Wert3","Wert4"]'
+         class="top-space navbuttons nopagination">
+    <ul>
+        <li><div class="large top-space">Schlafzimmer</div><div data-type="label" data-device="SchlafzimmerHeizung_Clima" data-get="measured-temp" class="bigger thin top-space"></div></li>
+        <li><div class="large top-space">Kinderzimmer</div><div data-type="label" data-device="KinderzimmerHeizung_Clima" data-get="measured-temp" class="bigger thin top-space"></div></li>
+        <li><div class="large top-space">Bad</div><div data-type="label" data-device="BadHeizung_Clima" data-get="measured-temp" class="bigger thin top-space"></div></li>
+        <li><div class="large top-space">Wohnzimmer</div><div data-type="label" data-device="WohnzimmerHeizung_Clima" data-get="measured-temp" class="bigger thin top-space"></div></li>
+     </ul>
+     </div>
+     <div data-type="label" data-device="dummy1"></div>
 </li>
 </ul>
 </div>
