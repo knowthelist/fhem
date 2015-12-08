@@ -3,7 +3,7 @@ if(typeof widget_widget == 'undefined') {
 }
 
 if (!$.fn.famultibutton){
-    dynamicload('lib/fa-multi-button.js', null, null, false);
+    dynamicload('lib/fa-multi-button.min.js', null, null, false);
 }
 
 var widget_famultibutton = $.extend({}, widget_widget, {
@@ -118,7 +118,10 @@ var widget_famultibutton = $.extend({}, widget_widget, {
         }
     },
     toggleOn : function(elem) {
-        if(this._doubleclicked(elem, 'on')) {
+        if (elem.data('set-on')===''){
+            elem.setOff();
+        }
+        else if(this._doubleclicked(elem, 'on')) {
             this.clicked(elem, 'on');
             elem.trigger("toggleOn");
             var blink = elem.data('blink');

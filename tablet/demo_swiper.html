@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    /* FHEM tablet ui */
+    /*
+    * UI builder framework for FHEM
+    *
+    * Version: 1.4.4
+    * URL: https://github.com/knowthelist/fhem-tablet-ui
+    *
+    * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    *
+    */
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="74">
+    <meta name="widget_base_height" content="71">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="0"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="0"> <!-- 1=output to console;0=no output -->
+    <meta name="demo" content="1"> <!-- 1=demo data;0=normal mode-->
+
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+
+    <script src="/fhem/pgm2/jquery.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.toast.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.gridster.min.js" defer></script>
+    <script src="/fhem/tablet/js/fhem-tablet-ui.min.js" defer></script>
+
+    <title>FTUI Demo Swiper</title>
+</head>
+<body>
+<div class="gridster">
+<ul>
+  <li data-row="1" data-col="1" data-sizex="4" data-sizey="5">
+  <header>WIDGET SWIPER</header>
+  <!-- place your widget here -->
+  <div class="left cell">
+      <div data-type="link" class="left large thin"
+           data-icon-left="fa-angle-left"
+           data-url="demo_widgets.html">Widgets
+      </div>
+      <div class="left-align bigger thin ">Swiper</div>
+      <div class="left-align darker">&nbsp; Widget</div>
+  </div>
+  <div class="row container round padding gray col-2-3 top-space left left-space left-align">
+     <b>Swiper</b>
+     is a touch slider for <br/>
+     multiple view pages<br/>
+  </div>
+  <div class="bottom absolute bottom-space">
+      <div data-type="link" class="round left"
+           data-color="lightgray"
+           data-icon="fa-code"
+           data-background-color="orange"
+           data-url="javascript:void(window.open('view-source:'+location.href))">
+           View Source Code
+      </div>
+      <div data-type="link" class="round right"
+           data-color="orange"
+           data-icon="fa-github"
+           data-border-color="orange"
+           data-url="https://github.com/knowthelist/fhem-tablet-ui">
+           Show On Github
+      </div>
+  </div>
+</li>
+<li data-row="1" data-col="5" data-sizex="8" data-sizey="5">
+    <header>WEATHER WEEK</header>
+    <!-- place your widget here -->
+    <div data-type="swiper" data-height="220px" data-width="500px" class="top-space-2x">
+        <ul>
+            <li>
+               <div class="left">
+                  <div data-type="label" data-device="AgroWeather" data-get="fc0_tempMax" data-unit="°C&nbsp;" class="bottom gigantic inline verticalLine"></div>
+                  <div class="inline">
+                     <div data-type="label" data-device="AgroWeather" data-get="fc0_weatherDay" class="large cell"></div>
+                     <div data-type="weather" data-device="AgroWeather" data-get="fc0_weatherDay" class="bigplus thin"></div>
+                     min:&nbsp;<div data-type="label" data-device="AgroWeather" data-get="fc0_tempMin" data-unit="%B0C%0A" class="inline medium"></div>
+                  </div>
+               </div><div class="row"></div>
+               <div class="left">
+                   <div data-type="label" data-device="AgroWeather" data-get="fc0_date" data-substitution="toDate().eeee()+','" class="left large cell darker"></div>
+                   <div data-type="label" data-device="AgroWeather" data-get="fc0_date" data-substitution="toDate().ddmm()" class="left large cell darker"></div>
+               </div>
+            </li>
+            <li>
+                <div class="left">
+                   <div data-type="label" data-device="AgroWeather" data-get="fc1_tempMax" data-unit="°C&nbsp;" class="bottom gigantic inline verticalLine"></div>
+                   <div class="inline">
+                      <div data-type="label" data-device="AgroWeather" data-get="fc1_weatherDay" class="large cell"></div>
+                      <div data-type="weather" data-device="AgroWeather" data-get="fc1_weatherDay" class="bigplus thin"></div>
+                      min:&nbsp;<div data-type="label" data-device="AgroWeather" data-get="fc1_tempMin" data-unit="%B0C%0A" class="inline medium"></div>
+                   </div>
+                </div><div class="row"></div>
+                <div class="left">
+                    <div data-type="label" data-device="AgroWeather" data-get="fc1_date" data-substitution="toDate().eeee()+','" class="left large cell darker"></div>
+                    <div data-type="label" data-device="AgroWeather" data-get="fc1_date" data-substitution="toDate().ddmm()" class="left large cell darker"></div>
+                </div>
+            </li>
+            <li>
+                <div class="left">
+                   <div data-type="label" data-device="AgroWeather" data-get="fc2_tempMax" data-unit="°C&nbsp;" class="bottom gigantic inline verticalLine"></div>
+                   <div class="inline">
+                      <div data-type="label" data-device="AgroWeather" data-get="fc2_weatherDay" class="large cell"></div>
+                      <div data-type="weather" data-device="AgroWeather" data-get="fc2_weatherDay" class="bigplus thin"></div>
+                      min:&nbsp;<div data-type="label" data-device="AgroWeather" data-get="fc2_tempMin" data-unit="%B0C%0A" class="inline medium"></div>
+                   </div>
+                </div><div class="row"></div>
+                <div class="left">
+                    <div data-type="label" data-device="AgroWeather" data-get="fc2_date" data-substitution="toDate().eeee()+','" class="left large cell darker"></div>
+                    <div data-type="label" data-device="AgroWeather" data-get="fc2_date" data-substitution="toDate().ddmm()" class="left large cell darker"></div>
+                </div>
+            </li>
+            <li>
+                <div class="left">
+                   <div data-type="label" data-device="AgroWeather" data-get="fc3_tempMax" data-unit="°C&nbsp;" class="bottom gigantic inline verticalLine"></div>
+                   <div class="inline">
+                      <div data-type="label" data-device="AgroWeather" data-get="fc3_weatherDay" class="large cell"></div>
+                      <div data-type="weather" data-device="AgroWeather" data-get="fc3_weatherDay" class="bigplus thin"></div>
+                      min:&nbsp;<div data-type="label" data-device="AgroWeather" data-get="fc3_tempMin" data-unit="%B0C%0A" class="inline medium"></div>
+                   </div>
+                </div><div class="row"></div>
+                <div class="left">
+                    <div data-type="label" data-device="AgroWeather" data-get="fc3_date" data-substitution="toDate().eeee()+','" class="left large cell darker"></div>
+                    <div data-type="label" data-device="AgroWeather" data-get="fc3_date" data-substitution="toDate().ddmm()" class="left large cell darker"></div>
+                </div>
+            </li>
+            <li>
+                <div class="left">
+                   <div data-type="label" data-device="AgroWeather" data-get="fc4_tempMax" data-unit="°C&nbsp;" class="bottom gigantic inline verticalLine"></div>
+                   <div class="inline">
+                      <div data-type="label" data-device="AgroWeather" data-get="fc4_weatherDay" class="large cell"></div>
+                      <div data-type="weather" data-device="AgroWeather" data-get="fc4_weatherDay" class="bigplus thin"></div>
+                      min:&nbsp;<div data-type="label" data-device="AgroWeather" data-get="fc4_tempMin" data-unit="%B0C%0A" class="inline medium"></div>
+                   </div>
+                </div><div class="row"></div>
+                <div class="left">
+                    <div data-type="label" data-device="AgroWeather" data-get="fc4_date" data-substitution="toDate().eeee()+','" class="left large cell darker"></div>
+                    <div data-type="label" data-device="AgroWeather" data-get="fc4_date" data-substitution="toDate().ddmm()" class="left large cell darker"></div>
+                </div>
+            </li>
+            <li>
+                <div class="left">
+                   <div data-type="label" data-device="AgroWeather" data-get="fc5_tempMax" data-unit="°C&nbsp;" class="bottom gigantic inline verticalLine"></div>
+                   <div class="inline">
+                      <div data-type="label" data-device="AgroWeather" data-get="fc5_weatherDay" class="large cell"></div>
+                      <div data-type="weather" data-device="AgroWeather" data-get="fc5_weatherDay" class="bigplus thin"></div>
+                      min:&nbsp;<div data-type="label" data-device="AgroWeather" data-get="fc5_tempMin" data-unit="%B0C%0A" class="inline medium"></div>
+                   </div>
+                </div><div class="row"></div>
+                <div class="left">
+                    <div data-type="label" data-device="AgroWeather" data-get="fc5_date" data-substitution="toDate().eeee()+','" class="left large cell darker"></div>
+                    <div data-type="label" data-device="AgroWeather" data-get="fc5_date" data-substitution="toDate().ddmm()" class="left large cell darker"></div>
+                </div>
+            </li>
+            <li>
+                <div class="left">
+                   <div data-type="label" data-device="AgroWeather" data-get="fc6_tempMax" data-unit="°C&nbsp;" class="bottom gigantic inline verticalLine"></div>
+                   <div class="inline">
+                      <div data-type="label" data-device="AgroWeather" data-get="fc6_weatherDay" class="large cell"></div>
+                      <div data-type="weather" data-device="AgroWeather" data-get="fc6_weatherDay" class="bigplus thin"></div>
+                      min:&nbsp;<div data-type="label" data-device="AgroWeather" data-get="fc6_tempMin" data-unit="%B0C%0A" class="inline medium"></div>
+                   </div>
+                </div><div class="row"></div>
+                <div class="left">
+                    <div data-type="label" data-device="AgroWeather" data-get="fc6_date" data-substitution="toDate().eeee()+','" class="left large cell darker"></div>
+                    <div data-type="label" data-device="AgroWeather" data-get="fc6_date" data-substitution="toDate().ddmm()" class="left large cell darker"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</li>
+<li data-row="6" data-col="1" data-sizex="3" data-sizey="4">
+    <header></header>
+    <!-- place your widget here -->
+</li>
+<li data-row="6" data-col="4" data-sizex="6" data-sizey="4">
+    <header>BASIC</header>
+    <!-- place your widget here -->
+    <div data-type="swiper"  data-height="220px" data-width="400px" class="top-space-2x">
+    <ul>
+        <li><div class="row-2-3 container gray center large">Page1</div></li>
+        <li><div class="row-2-3 container gray center large">Page2</div></li>
+        <li><div class="row-2-3 container gray center large">Page3</div></li>
+        <li><div class="row-2-3 container gray center large">Page4</div></li>
+        <li><div class="row-2-3 container gray center large">Page5</div></li>
+     </ul>
+     </div>
+</li>
+<li data-row="6" data-col="10" data-sizex="3" data-sizey="4">
+    <header></header>
+    <!-- place your widget here -->
+</li>
+</ul>
+</div>
+</body>
+</html>
+
