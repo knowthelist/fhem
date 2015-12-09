@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    /* FHEM tablet ui */
+    /*
+    * UI builder framework for FHEM
+    *
+    * Version: 1.4.4
+    * URL: https://github.com/knowthelist/fhem-tablet-ui
+    *
+    * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    *
+    */
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="74">
+    <meta name="widget_base_height" content="71">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="0"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="0"> <!-- 1=output to console;0=no output -->
+    <meta name="demo" content="1"> <!-- 1=demo data;0=normal mode-->
+
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+
+    <script src="/fhem/pgm2/jquery.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.toast.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.gridster.min.js" defer></script>
+    <script src="/fhem/tablet/js/fhem-tablet-ui.min.js" defer></script>
+
+    <title>FTUI Demo Tabs with Swiper</title>
+</head>
+<body>
+<div class="gridster">
+<ul>
+  <li data-row="1" data-col="1" data-sizex="4" data-sizey="9">
+  <header>WIDGET SWIPER</header>
+  <!-- place your widget here -->
+  <div class="left cell">
+      <div data-type="link" class="left large thin"
+           data-icon-left="fa-angle-left"
+           data-url="demo_solutions.html">Solutions
+      </div>
+      <div class="left-align bigger thin ">Swiper <br/>& Link</div>
+      <div class="left-align darker">&nbsp; Example</div>
+  </div>
+  <div class="row container round padding bg-gray gray col-2-3 top-space left left-space left-align">
+     <b>Tabs with Swiper</b>
+     is a solution to implement<br/>
+     tab buttons with the link widget<br/>
+     which controls a swiper widget<br/>
+     for paging
+  </div>
+  <div class="bottom absolute bottom-space">
+      <div data-type="link" class="round left"
+           data-color="lightgray"
+           data-icon="fa-code"
+           data-background-color="orange"
+           data-url="javascript:void(window.open('view-source:'+location.href))">
+           View Source Code
+      </div>
+      <div data-type="link" class="round right"
+           data-color="orange"
+           data-icon="fa-github"
+           data-border-color="orange"
+           data-url="https://github.com/knowthelist/fhem-tablet-ui">
+           Show On Github
+      </div>
+  </div>
+</li>
+
+<li data-row="1" data-col="4" data-sizex="8" data-sizey="9">
+    <header>TABS WITH SWIPER</header>
+    <!-- place your widget here -->
+    <div class="top-space large thin">
+        <div data-type="link" class="inline narrow"
+             data-width="120" data-height="40"
+             data-color="blue"
+             data-background-color=""
+             data-border-color="blue"
+             data-active-color="white"
+             data-active-background-color="blue"
+             data-active-border-color="blue"
+             data-active-pattern=".*room1"
+             data-icon="fa-home"
+             data-url="#room1">
+            Room 1
+        </div>
+        <div data-type="link" class="inline narrow"
+             data-width="120" data-height="40"
+             data-color="blue"
+             data-background-color=""
+             data-border-color="blue"
+             data-active-color="white"
+             data-active-background-color="blue"
+             data-active-border-color="blue"
+             data-active-pattern=".*room2"
+             data-icon="fa-gear"
+             data-url="#room2">
+            Room 2
+        </div>
+        <div data-type="link" class="inline narrow"
+             data-width="120" data-height="40"
+             data-color="blue"
+             data-background-color=""
+             data-border-color="blue"
+             data-active-color="white"
+             data-active-background-color="blue"
+             data-active-border-color="blue"
+             data-active-pattern=".*room3"
+             data-icon="fa-music"
+             data-url="#room3">
+            Room 3
+        </div>
+        <div data-type="link" class="inline narrow"
+             data-width="120" data-height="40"
+             data-color="blue"
+             data-background-color=""
+             data-border-color="blue"
+             data-active-color="white"
+             data-active-background-color="blue"
+             data-active-border-color="blue"
+             data-active-pattern=".*room4"
+             data-icon="fa-print"
+             data-url="#room4">
+            Room 4
+        </div>
+    </div>
+    <div data-type="swiper" data-height="90%" data-width="90%"
+         class="top-space-2x hashnav nopagination">
+    <ul>
+        <li data-hash="room1">
+            <div class="row-2-3 container bg-gray">&nbsp;
+                <div class="bigger thin">Room 1</div>
+                <div class="top-space-3x inline">
+                    <div data-type="thermostat" data-device="SchlafzimmerHeizung_Clima" ></div>
+                    <div>Temp</div>
+                </div>
+                <div class="inline">
+                    <div>
+                        <div data-type="switch" data-device="dummy1" ></div>
+                        <div>Licht</div>
+                    </div>
+                    <div>
+                        <div data-type="symbol" data-device="dummy2" ></div>
+                        <div>Fenster</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li data-hash="room2">
+            <div class="row-2-3 container bg-gray">&nbsp;
+                <div class="bigger thin">Room 2</div>
+                <div class="top-space-3x inline">
+                    <div data-type="thermostat" data-device="KinderzimmerHeizung_Clima" ></div>
+                    <div>Temp</div>
+                </div>
+                <div class="inline">
+                    <div>
+                        <div data-type="switch" data-device="dummy3" ></div>
+                        <div>Licht</div>
+                    </div>
+                    <div>
+                        <div data-type="symbol" data-device="dummy2" ></div>
+                        <div>Fenster</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li data-hash="room3">
+            <div class="row-2-3 container bg-gray">&nbsp;
+                <div class="bigger thin">Room 3</div>
+                <div class="top-space-3x inline">
+                    <div data-type="thermostat" data-device="BadHeizung_Clima" ></div>
+                    <div>Temp</div>
+                </div>
+                <div class="inline">
+                    <div>
+                        <div data-type="switch" data-device="dummy1" ></div>
+                        <div>Licht</div>
+                    </div>
+                    <div>
+                        <div data-type="symbol" data-device="dummy2" ></div>
+                        <div>Fenster</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li data-hash="room4">
+            <div class="row-2-3 container bg-gray">&nbsp;
+                <div class="bigger thin">Room 4</div>
+                <div class="top-space-3x inline">
+                    <div data-type="thermostat" data-device="WohnzimmerHeizung_Clima" ></div>
+                    <div>Temp</div>
+                </div>
+                <div class="inline">
+                    <div>
+                        <div data-type="switch" data-device="dummy3" ></div>
+                        <div>Licht</div>
+                    </div>
+                    <div>
+                        <div data-type="symbol" data-device="dummy2" ></div>
+                        <div>Fenster</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+     </ul>
+     </div>
+</li>
+
+</ul>
+</div>
+</body>
+</html>
+
