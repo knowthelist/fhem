@@ -18,10 +18,14 @@ var DEBUG = false;
 var DEMO = false;
 var debuglevel;
 var TOAST = true;
-var doLongPoll = false
+var doLongPoll = false;
+var longPollRequest;
 var timer;
-var timeoutMenu;
 var dir = '';
+var fhem_dir = '';
+var runningRequests = 0;
+var REQ_WAIT = 100;
+var REQ_MAX = 4;
 var filename = '';
 var shortpollInterval = 30 * 1000; // 30 seconds
 var devs = [];
@@ -81,9 +85,11 @@ $(document).on('ready', function() {
     initPage();
 
     if ( doLongPoll ){
+        var longpollDelay = $("meta[name='longpoll_delay']").attr("content")
+            || (typeof wvcDevices != 'undefined')?shortpollInterval:100;
         setTimeout(function() {
             longPoll();
-        }, (typeof wvcDevices != 'undefined')?shortpollInterval:100);
+        }, longpollDelay);
         shortpollInterval = 15 * 60 * 1000; // 15 minutes
     }
 
@@ -119,6 +125,9 @@ function initPage() {
     filename = url.substring(url.lastIndexOf('/')+1);
     DEBUG && console.log('Filename: '+filename);
 
+    fhem_dir = $("meta[name='fhemweb_url']").attr("content") || "/fhem/";
+    DEBUG && console.log('FHEM dir: '+fhem_dir);
+
     //init gridster
     if (gridster)
         gridster.destroy();
@@ -140,12 +149,22 @@ function initPage() {
     var total = $('[data-template]').length;
     if (total>0){
         $('[data-template]').each(function(index) {
-            $(this).load($(this).data('template'), function() {
-                if (index === total - 1) {
-                    //continue after loading the includes
-                    initWidgets();
+            var tempelem = $(this);
+            $.get(
+                tempelem.data('template'),
+                {},
+                function (data) {
+                    var parValues = tempelem.data('parameter');
+                    for (var key in parValues) {
+                        data = data.replace(new RegExp(key, 'g'), parValues[key]);
+                    }
+                    tempelem.html(data);
+                    if (index === total - 1) {
+                        //continue after loading the includes
+                        initWidgets();
+                    }
                 }
-            });
+            );
         });
     }
     else{
@@ -165,7 +184,7 @@ function initReadingsArray(get) {
         if(reading.match(/:/)) {
             var fqreading = reading.split(':');
             var device = fqreading[0]
-            if(!devices[device]){
+            if(!devices[device] && typeof device != 'undefined' && device !== 'undefined' ){
                 devices[device] = true;
                 devs.push(device);
             }
@@ -208,7 +227,7 @@ function initWidgets() {
     //collect required devices
     $('div[data-device]').each(function(index){
         var device = $(this).data("device");
-        if(!devices[device]){
+        if(!devices[device] && typeof device != 'undefined' && device !== 'undefined' ){
             devices[device] = true;
             devs.push(device);
         }
@@ -224,6 +243,7 @@ function initWidgets() {
     var deferredArr = $.map(types, function(widget_type, i) {
         return plugins.load('widget_'+widget_type);
     });
+    runningRequests = 0;
 
     //get current values of readings not before all widgets are loaded
     $.when.apply(this, deferredArr).then(function() {
@@ -257,20 +277,21 @@ function setFhemStatus(cmdline) {
     DEBUG && console.log('send to FHEM: '+cmdline);
 	$.ajax({
 		async: true,
-		url: $("meta[name='fhemweb_url']").attr("content") || "/fhem/",
+        cache:false,
+        url: fhem_dir,
 		data: {
 			cmd: cmdline,
 			XHR: "1"
 		}
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
-    		$.toast("Error: " + textStatus + ": " + errorThrown);
+            TOAST && $.toast("Error: " + textStatus + ": " + errorThrown);
 	})
   	.done ( function( data ) {
         if ( !doLongPoll ){
 			setTimeout(function(){
                 for (var reading in readings) {
-                    requestFhem(reading);
+                     requestFhem(reading);
 				}
 			}, 4000);
 		}
@@ -287,13 +308,15 @@ function longPoll(roomName) {
 		xhr.abort();
 	currLine=0;
 	
-	$.ajax({
-		url: $("meta[name='fhemweb_url']").attr("content") || "/fhem/",
+    longPollRequest=$.ajax({
+        url: fhem_dir,
 		cache: false,
 		complete: function() {
-            setTimeout(function() {
-                longPoll();
-            }, 100);
+            if ( doLongPoll ){
+                setTimeout(function() {
+                    longPoll();
+                }, 100);
+            }
 		},
         timeout: 60000,
 		async: true,
@@ -380,25 +403,42 @@ function requestFhem(paraname, devicename) {
     } else {
         devicelist = $.map(devs, $.trim).join();
     }
-    
-/* 'list' is still the fastest cmd to get all important data
-*/
+
+    if ( runningRequests > REQ_MAX ){
+        setTimeout(function() { requestFhem(paraname, devicename) }, REQ_WAIT);
+    }
+    else{
+
+     if (debuglevel>=5) console.log('starting new AJAX requests #'+runningRequests);
+
+    /* 'list' is still the fastest cmd to get all important data
+    */
     if(typeof paraname != 'undefined' && paraname !== 'undefined') {
+        runningRequests++;
         $.ajax({
             async: true,
             timeout: 15000,
             cache: false,
             context:{paraname: paraname},
-            url: $("meta[name='fhemweb_url']").attr("content") || "/fhem/",
+            url: fhem_dir,
             data: {
                 cmd: ["list",devicelist,paraname].join(' '),
                 XHR: "1"
-            }
+            },
+           beforeSend: function(jqXHR, settings) {
+               jqXHR.url = settings.url;
+           },
+           error: function(jqXHR, exception) {
+               //alert(jqXHR.url);
+           }
         })
         .fail (function(jqXHR, textStatus, errorThrown) {
-                $.toast("Error: " + textStatus + ": " + errorThrown);
+            TOAST && $.toast("Error: " + textStatus + ": " + errorThrown  + ": " +  runningRequests);
+            runningRequests--;
         })
         .done (function( data ) {
+            runningRequests--;
+            if (debuglevel>=5) console.log('finished AJAX requests #'+runningRequests);
 			var lines = data.replace(/\n\)/g,")\n").split(/\n/);
             var regCapture = /^(\S*)\s*([0-9]{4}-[0-9]{2}-[0-9]{2}\s[0-2][0-9]:[0-5][0-9]:[0-5][0-9])?\.?[0-9]{0,3}\s+(.*)$/;
             for (var i=0, len=lines.length; i < len; i++) {
@@ -421,11 +461,6 @@ function requestFhem(paraname, devicename) {
 
                         //check if update is necessary
                         var oldParams = getParameterByName(key,paraname);
-                        //if (oldParams) console.log('requestFhem::done: check for update: oldVal:',oldParams.val,' newVal:',val,' oldDate:',oldParams.date,' newDate:',date);
-                        //if (oldParams){
-                            //$.toast(key+'_'+oldParams.val +'_'+val);
-                             //$.toast(key+'_'+oldParams.date+'/'+date);
-                        //}
                         if(!oldParams || oldParams.val!=val || oldParams.date!=date){
                             var params = deviceStates[key] || {};
                             var value = {"date": date, "val": val};
@@ -440,9 +475,13 @@ function requestFhem(paraname, devicename) {
             saveStatesLocal();
         });
     }
+    }
 }
 
 $(window).on('beforeunload', function(){
+    doLongPoll = false;
+    if (longPollRequest)
+        longPollRequest.abort();
     saveStatesLocal();
 });
 
@@ -479,7 +518,7 @@ function loadStyleSchema(){
                var elmName = rules[r].selectorText;
                var params = {};
                for (var s in styles){
-                   var param = styles[s].split(':');
+                   var param = styles[s].toString().split(':');
                    if (param[0].match(/color/)){
                       params[$.trim(param[0])]=$.trim(param[1]).replace('! important','').replace('!important','');
                    }
@@ -499,7 +538,7 @@ this.getPart = function (s,p) {
 	else {
 		if ((s && typeof s != "undefined") )
             var matches = s.match( new RegExp('^' + p + '$') );
-		var ret='';
+        var ret='';
 		if (matches) {
 			for (var i=1;i<matches.length;i++) {
 				ret+=matches[i];
@@ -601,7 +640,12 @@ this.getIconId = function(iconName){
     for (var rule in rules){
         if ( rules[rule].selectorText && rules[rule].selectorText.match(new RegExp(iconName+':') )){
             var id = rules[rule].style.content;
-            return (id)?id.replace(/"/g,'').replace(/'/g,""):"?";
+            if (!id)
+                return iconName;
+            id = id.replace(/"/g,'').replace(/'/g,"");
+            return (/[^\u0000-\u00ff]/.test(id))
+                    ? id
+                    : String.fromCharCode(parseInt(id.replace('\\',''),16));
         }
     }
 }
@@ -616,7 +660,7 @@ this.showModal = function (modal) {
 
 // global date format functions
 this.dateFromString = function (str) {
- var m = str.match(/(\d+)-(\d+)-(\d+)_(\d+):(\d+):(\d+).*/);
+ var m = str.match(/(\d+)-(\d+)-(\d+)[_\s](\d+):(\d+):(\d+).*/);
  var m2 = str.match(/(\d\d).(\d\d).(\d\d\d\d)/);
  var offset = new Date().getTimezoneOffset();
  return (m) ? new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6])
@@ -629,9 +673,32 @@ this.diffMinutes = function(date1,date2){
        return (diff/1000/60).toFixed(0);
 }
 
+this.mapColor = function(value) {
+    return getStyle('.'+value,'color') || value;
+};
+
 String.prototype.toDate = function() {
     return dateFromString(this);
 }
+
+Date.prototype.ago = function() {
+  var now = new Date();
+  var ms = (now - this) ;
+  var x = ms / 1000;
+  var seconds = Math.round(x % 60);
+      x /= 60;
+  var minutes = Math.round(x % 60);
+      x /= 60;
+  var hours = Math.round(x % 24);
+      x /= 24;
+  var days = Math.round(x);
+  var userLang = navigator.language || navigator.userLanguage;
+  var strUnits = (userLang.split('-')[0] === 'de')?['Tage','Stunden','Minuten','Sekunden']:['days','hours','minutes','seconds'];
+  var ret = (days>0)?days +" "+strUnits[0]+ " ":"";
+      ret += (hours>0)?hours +" "+strUnits[1]+ " ":"";
+      ret += (minutes>0)?minutes +" "+strUnits[2]+ " ":"";
+  return ret + seconds +" "+ strUnits[3];
+ };
    
 Date.prototype.yyyymmdd = function() {
   var yyyy = this.getFullYear().toString();
@@ -714,4 +781,10 @@ this.indexOfRegex = function(array,find){
       } catch(e) {}
   }
   return array.indexOf(find);
+};
+
+$.fn.once = function(a, b) {
+    return this.each(function() {
+        $(this).off(a).on(a,b);
+    });
 };

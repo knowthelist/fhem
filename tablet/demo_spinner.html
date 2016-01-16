@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    /* FHEM tablet ui */
+    /*
+    * UI builder framework for FHEM
+    *
+    * Version: 1.4.4
+    * URL: https://github.com/knowthelist/fhem-tablet-ui
+    *
+    * Copyright (c) 2016 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    *
+    */
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="74">
+    <meta name="widget_base_height" content="71">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="0"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="0"> <!-- 1=output to console;0=no output -->
+    <meta name="demo" content="1"> <!-- 1=demo data;0=normal mode-->
+
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+
+    <script src="/fhem/pgm2/jquery.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.toast.min.js" defer></script>
+    <script src="/fhem/tablet/lib/jquery.gridster.min.js" defer></script>
+    <script src="/fhem/tablet/js/fhem-tablet-ui.min.js" defer></script>
+
+    <title>FTUI Demo Spinner</title>
+</head>
+<body>
+<div class="gridster">
+<ul>
+<li data-row="1" data-col="1" data-sizex="4" data-sizey="5">
+    <header>WIDGET SPINNER</header>
+    <!-- place your widget here -->
+    <div class="left cell">
+        <div data-type="link" class="left large thin"
+             data-icon-left="fa-angle-left"
+             data-url="demo_widgets.html">Widgets
+        </div>
+        <div class="left-align bigger thin ">Spinner</div>
+        <div class="left-align darker">&nbsp; Widget</div>
+    </div>
+    <div class="row container round padding bg-gray gray col-2-3 top-space left left-space left-align">
+       <b>Spinner</b>
+       is a control element <br/>
+       to adjust a value by clicking<br/>
+       on the up or down icon.<br/>
+       The current value can be shown<br/>
+       as numeric text or as a level bar.
+    </div>
+    <div class="bottom absolute bottom-space">
+        <div data-type="link" class="round left"
+             data-color="lightgray"
+             data-icon="fa-code"
+             data-background-color="orange"
+             data-url="javascript:void(window.open('view-source:'+location.href))">
+             View Source Code
+        </div>
+        <div data-type="link" class="round right"
+             data-color="orange"
+             data-icon="fa-github"
+             data-border-color="orange"
+             data-url="https://github.com/knowthelist/fhem-tablet-ui">
+             Show On Github
+        </div>
+    </div>
+</li>
+<li data-row="1" data-col="5" data-sizex="5" data-sizey="5">
+    <header>MODES</header>
+    <!-- place your widget here -->
+    <div class="left-space top-space">
+       <div class="top-space row">
+            <div data-type="spinner"
+                data-device="dummy1"
+                data-step="2"
+                class="col-1-2">
+            </div>
+            <div class="gray col-1-3">default</div>
+        </div>
+        <div class="top-space row">
+            <div data-type="spinner"
+                data-device="dummy3"
+                data-max="70"
+                data-gradient-color='["blue","red"]'
+                class="positiononly col-1-2">
+            </div>
+            <div class="gray col-1-3">class="positiononly"</div>
+        </div>
+        <div class="top-space row">
+            <div data-type="spinner"
+                data-device="dummy3"
+                data-max="70"
+                data-gradient-color='["blue","red"]'
+                class="col-1-2">
+            </div>
+            <div class="gray col-1-3">data-gradient-color='["blue","red"]'</div>
+        </div>
+        <div class="top-space row">
+            <div data-type="spinner"
+                data-device="dummy2"
+                data-min="10"
+                data-max="30"
+                data-unit="°"
+                class="value col-1-2">
+            </div>
+            <div class="gray col-1-3">class="value"</div>
+        </div>
+        <div class="top-space row">
+            <div data-type="spinner"
+                data-device="dummy2"
+                data-min="10"
+                data-max="30"
+                data-unit="°"
+                class="valueonly col-1-2">
+            </div>
+            <div class="gray col-1-3">class="valueonly"</div>
+        </div>
+     </div>
+</li>
+<li data-row="1" data-col="10" data-sizex="3" data-sizey="5">
+    <header>ICONS</header>
+    <!-- place your widget here -->
+    <div class="left-space top-space-2x">
+        <div data-type="spinner"
+            data-device="AvReceiver"
+            data-get="volume"
+            data-set="volume"
+            data-max="70"
+            data-background-color="#393939"
+            class="top-space-2x">
+        </div>
+        <div class="gray">default</div>
+        <div data-type="spinner"
+            data-device="AvReceiver"
+            data-get="volume"
+            data-set="volume"
+            data-max="70"
+            data-step="2"
+            data-icon-left="fa-volume-down"
+            data-icon-right="fa-volume-up"
+            class="top-space-2x">
+        </div>
+        <div class="gray">data-icon-left="fa-volume-down"<br/>
+        data-icon-right="fa-volume-up"</div>
+        <div data-type="spinner"
+            data-device="AvReceiver"
+            data-get="volume"
+            data-set="volume"
+            data-max="70"
+            data-step="2"
+            data-icon-left="fa-caret-down"
+            data-icon-right="fa-caret-up"
+            class="top-space-2x">
+        </div>
+        <div class="gray">data-icon-left="fa-caret-down"<br/>
+        data-icon-right="fa-caret-up"</div>
+    </div>
+</li>
+<li data-row="6" data-col="1" data-sizex="3" data-sizey="4">
+    <header>BACK COLOR</header>
+    <!-- place your widget here -->
+    <div class="left-space top-space-2x">
+        <div data-type="spinner"
+            data-device="dummy1"
+            data-background-color="none">
+        </div>
+        <div class="gray">data-background-color="none"</div>
+        <div data-type="spinner"
+            data-device="dummy1"
+            data-background-color="#393939"
+            class="top-space-2x">
+        </div>
+        <div class="gray">data-background-color="#393939"</div>
+        <div data-type="spinner"
+            data-device="dummy1"
+            class="top-space-2x">
+        </div>
+        <div class="gray">default</div>
+
+    </div>
+</li>
+<li data-row="6" data-col="4" data-sizex="6" data-sizey="4">
+    <header>OTHER PARAMETERS</header>
+    <!-- place your widget here -->
+    <div class="cell top-space">
+       <div class="top-space row">
+            <div data-type="spinner"
+                data-device="dummy1"
+                data-step="2"
+                data-unit="°"
+                data-text-color="dummy3:color"
+                class="valueonly col-3-5">
+            </div>
+            <div class="gray col-2-5">data-text-color="dummy3:color"</div>
+        </div>
+        <div class="top-space row">
+            <div data-type="spinner"
+                data-device="dummy2"
+                data-icon-left-color="blue"
+                data-icon-right-color="red"
+                data-min="10"
+                data-max="30"
+                data-unit="°"
+                class="valueonly col-3-5">
+            </div>
+            <div class="gray col-2-5">
+            data-icon-left-color="blue"<br/>
+            data-icon-right-color="red"</div>
+        </div>
+        <div class="top-space row">
+            <div data-type="spinner"
+                data-device="dummy3"
+                data-step="2"
+                data-min="18"
+                data-max="22"
+                data-unit="°"
+                class="valueonly col-3-5">
+            </div>
+            <div class="gray col-2-5">data-step="2"<br/>
+            data-min="18"<br/>
+            data-max="22"</div>
+        </div>
+        <div class="top-space row">
+            <div data-type="spinner"
+                data-device="dummy2"
+                data-step="0.5"
+                data-min="10"
+                data-max="30"
+                data-unit="°"
+                class="valueonly col-3-5">
+            </div>
+            <div class="gray col-2-5">data-step="0.5"</div>
+        </div>
+     </div>
+</li>
+<li data-row="6" data-col="10" data-sizex="3" data-sizey="4">
+    <header>COLOR</header>
+    <!-- place your widget here -->
+    <!-- place your widget here -->
+    <div class="left-space top-space-2x">
+        <div data-type="spinner"
+            data-device="dummy1"
+            data-color="#a0aa00">
+        </div>
+        <div class="gray">data-color="#a0aa00"</div>
+        <div data-type="spinner"
+            data-device="dummy1"
+            class="green top-space-2x">
+        </div>
+        <div class="gray">class="green"</div>
+        <div data-type="spinner"
+            data-device="dummy1"
+            class="blue top-space-2x">
+        </div>
+        <div class="gray">class="blue"</div>
+
+    </div>
+</li>
+</ul>
+</div>
+</body>
+</html>
